@@ -414,7 +414,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 52a3501d6ea8c4bb3bf7e3a3d87ed56a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &1657118027
 SpriteRenderer:
@@ -497,4 +497,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 10
+  jumpForce: 7
+  fallGravityScale: 4

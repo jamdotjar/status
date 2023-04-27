@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private float moveDirection;
-
+    public float fallGravityScale = 2f;
+    private float defaultGravityScale = 1f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,14 +22,38 @@ public class PlayerController : MonoBehaviour
         moveDirection = Input.GetAxisRaw("Horizontal");
         Move();
         Debug.Log(isGrounded);
+        
+
+       
+    
+        
+    }
+    void FixedUpdate()
+    {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            Debug.Log("jump");
             Jump();
         }
-        if (Input.GetButtonDown("Jump")){
-            Debug.Log("Jump");
-        
+        CalculateGravity();
+    }
+
+    private void CalculateGravity()
+    {
+        //if player is falling, add gravity to make the jump feel less floaty
+        if (isGrounded)
+        {   
+            rb.gravityScale  = defaultGravityScale;
         }
+        else if (rb.velocity.y > 0)
+        {
+            rb.gravityScale = defaultGravityScale;
+        }
+        else if (rb.velocity.y < 0)
+        {
+            rb.gravityScale = fallGravityScale;
+        }
+       
     }
 
     private void Move()
