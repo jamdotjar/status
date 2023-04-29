@@ -4,39 +4,42 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Script Toggle")] 
-    [SerializeField] private bool scriptEnabled = true;
-    [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 15f;
+  
+    [SerializeField] private float moveSpeed = 8f;
+    [SerializeField] private float jumpForce = 11f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheckPoint;
-    [SerializeField] private float groundCheckRadius = 0.2f;
-    [SerializeField] private float accelerationSpeed = 4f;
-    [SerializeField] private float decelerationSpeed = 9f;
+    [SerializeField] private float groundCheckRadius = 0.4f;
+    [SerializeField] private float accelerationSpeed = 0.5f;
+    [SerializeField] private float decelerationSpeed = 0.4f;
     [SerializeField] private float lowJumpGravityScale = 4f;
     [SerializeField] private float defaultGravityScale = 2f;
-    [SerializeField] private float fallGravityScale = 3f;
-    [SerializeField] private float airAccelerationSpeed = 1f;
-    [SerializeField] private float airDecelerationSpeed = 1f;
+    [SerializeField] private float fallGravityScale = 6f;
+    [SerializeField] private float airAccelerationSpeed = 0.2f;
+    [SerializeField] private float airDecelerationSpeed = 0.06f;
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private float moveDirection;
     public 
     
+    
     bool shouldJump;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
+   
+    
     void Update()
     {
+        // log accelaration and deceleration speed
+        Debug.Log("acceleration speed: " + accelerationSpeed);
+        Debug.Log("deceleration speed: " + decelerationSpeed);
         CheckGrounded();
         moveDirection = Input.GetAxisRaw("Horizontal");
         Move();
-        Debug.Log(isGrounded);
+        
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     void FixedUpdate()
-{
+    {
     if (shouldJump)
     {
         Jump();
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
     }
     CalculateGravity();
 }
+    
     private void CheckGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayer);
