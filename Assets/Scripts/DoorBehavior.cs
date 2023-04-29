@@ -8,12 +8,12 @@ public class DoorBehavior : MonoBehaviour
     Vector3 doorClosedPos;
     Vector3 doorOpenPos;
     [SerializeField] float doorSpeed = 10f;
-    [SerializeField] float doorOpenAmount = 3f;
+    [SerializeField] private Vector3 doorOpenOffset = new Vector3(0,0,0);
 
     void Awake(){
        
         doorClosedPos = transform.position;
-        doorOpenPos = new Vector3(transform.position.x, transform.position.y + doorOpenAmount, transform.position.z);
+        doorOpenPos = new Vector3(transform.position.x + doorOpenOffset.x, transform.position.y + doorOpenOffset.y, transform.position.z + doorOpenOffset.z);
     }
     void Update(){
         
