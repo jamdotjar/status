@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Script Toggle")] 
-    [SerializeField] private bool scriptEnabled = true;
-    [Header("Movement Settings")]
+  
     [SerializeField] private float moveSpeed = 8f;
     [SerializeField] private float jumpForce = 11f;
     [SerializeField] private LayerMask groundLayer;
@@ -25,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private float moveDirection;
     public 
     
+    
     bool shouldJump;
     void Start()
     {
@@ -34,6 +33,9 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        // log accelaration and deceleration speed
+        Debug.Log("acceleration speed: " + accelerationSpeed);
+        Debug.Log("deceleration speed: " + decelerationSpeed);
         CheckGrounded();
         moveDirection = Input.GetAxisRaw("Horizontal");
         Move();
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     void FixedUpdate()
-{
+    {
     if (shouldJump)
     {
         Jump();

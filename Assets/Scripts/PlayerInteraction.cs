@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public float boxMoveSpeed = 70.0f;
+
     public float maxGrabDistance;
     public LayerMask wallLayerMask;
     private BoxCollider2D boxCollider;
@@ -17,39 +19,47 @@ public class PlayerInteraction : MonoBehaviour
 
  private void Update()
 {
+
     Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     if (Input.GetKeyDown(grabKey))
-{
-    if (!isGrabbing)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseWorldPosition - (Vector2)transform.position, grabDistance, boxLayerMask);
-        if (hit.collider != null)
+        if (!isGrabbing)
         {
-            grabbedBox = hit.collider.gameObject.GetComponent<Rigidbody2D>();
-            boxCollider = hit.collider.gameObject.GetComponent<BoxCollider2D>();
-            if (grabbedBox != null)
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseWorldPosition - (Vector2)transform.position, grabDistance, boxLayerMask);
+            if (hit.collider != null)
             {
-                grabbedBox.gravityScale = 0;
-                isGrabbing = true;
-                Physics2D.IgnoreCollision(boxCollider, GetComponent<Collider2D>(), true); // Ignore collision with player
+                // Check if there's a wall between the player and the box
+                RaycastHit2D wallHit = Physics2D.Linecast(transform.position, hit.transform.position, wallLayerMask);
+                if (wallHit.collider == null)
+                {
+                    grabbedBox = hit.collider.gameObject.GetComponent<Rigidbody2D>();
+                    boxCollider = hit.collider.gameObject.GetComponent<BoxCollider2D>();
+                    if (grabbedBox != null)
+                    {
+                        grabbedBox.gravityScale = 0;
+                        isGrabbing = true;
+                        Physics2D.IgnoreCollision(boxCollider, GetComponent<Collider2D>(), true); // Ignore collision with player
+                    }
+                }
             }
         }
+        else
+        {
+            grabbedBox.gravityScale = 1;
+            Physics2D.IgnoreCollision(boxCollider, GetComponent<Collider2D>(), false); // Re-enable collision with player
+            grabbedBox = null;
+            boxCollider = null;
+            isGrabbing = false;
+        }
     }
-    else
-    {
-        grabbedBox.gravityScale = 1;
-        Physics2D.IgnoreCollision(boxCollider, GetComponent<Collider2D>(), false); // Re-enable collision with player
-        grabbedBox = null;
-        boxCollider = null;
-        isGrabbing = false;
-    }
-}
-
     if (isGrabbing)
     {
         Vector2 hoverDirection = (mouseWorldPosition - (Vector2)transform.position).normalized;
-        Vector2 targetPosition = (Vector2)transform.position + hoverDirection * hoverRadius;
+        float actualDistance = Vector2.Distance(mouseWorldPosition, (Vector2)transform.position);
+        float positionFactor = Mathf.Min(1.0f, actualDistance / hoverRadius);
+
+        Vector2 targetPosition = (Vector2)transform.position + hoverDirection * hoverRadius * positionFactor;
 
         // Check for wall collisions
         RaycastHit2D wallHit = Physics2D.Raycast(transform.position, hoverDirection, hoverRadius, wallLayerMask);
@@ -58,7 +68,8 @@ public class PlayerInteraction : MonoBehaviour
             targetPosition = wallHit.point - (hoverDirection * 0.01f); // Slightly move the box away from the wall
         }
 
-        grabbedBox.MovePosition(targetPosition);
+        float step = boxMoveSpeed * Time.deltaTime;
+        grabbedBox.MovePosition(Vector2.MoveTowards(grabbedBox.transform.position, targetPosition, step));
 
         // Check if the box is too far from the player
         if (Vector2.Distance(transform.position, grabbedBox.transform.position) > maxGrabDistance)
@@ -69,6 +80,4 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 }
-
-    
 }
