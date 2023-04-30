@@ -7,8 +7,8 @@ public class Laser : MonoBehaviour
     [SerializeField] Transform startPoint;
     [SerializeField] Transform endPoint;
     [SerializeField] private LayerMask blockingLayer;
-    [SerializeField] private DoorBehavior door;
-
+    [SerializeField] private DoorBehavior DoorBehavior;
+    [SerializeField] private bool opensDoor;
     private LineRenderer lineRenderer;
 
     void Start()
@@ -34,16 +34,34 @@ public class Laser : MonoBehaviour
     {
         Vector2 direction = endPoint.position - startPoint.position;
         RaycastHit2D hit = Physics2D.Raycast(startPoint.position, direction, Vector2.Distance(startPoint.position, endPoint.position), blockingLayer);
-
-        if (hit.collider == null)
+        if(opensDoor)
         {
-            door.isOpen = true;
-            lineRenderer.SetPosition(1, endPoint.position);
-        }
-        else
-        {
-            door.isOpen = false;
-            lineRenderer.SetPosition(1, hit.point);
+            //if it dosent hit anything
+            if (hit.collider == null && DoorBehavior.isOpen == false)
+            {
+                DoorBehavior.isOpen = true;
+                lineRenderer.SetPosition(1, endPoint.position);
+            }
+            //if it does 
+            else if(hit.collider != null && DoorBehavior.isOpen == true)
+            {
+                DoorBehavior.isOpen = false;
+                lineRenderer.SetPosition(1, hit.point);
+            }
+            }
+            else if(!opensDoor){
+            if (hit.collider == null && DoorBehavior.isOpen == true )
+            {
+                DoorBehavior.isOpen = false;
+                lineRenderer.SetPosition(1, endPoint.position);
+            }
+            else if(hit.collider != null && DoorBehavior.isOpen == false)
+            
+            {
+                DoorBehavior.isOpen = true;
+                lineRenderer.SetPosition(1, hit.point);
+            }
+        
         }
     }
 }
