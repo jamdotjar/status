@@ -1016,7 +1016,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.95}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1007068666
 SpriteRenderer:
@@ -2078,13 +2078,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-<<<<<<< HEAD
-  m_Size: {x: 0.9, y: 0.9}
-  m_EdgeRadius: 0.05
-=======
   m_Size: {x: 0.82, y: 0.82}
   m_EdgeRadius: 0.09
->>>>>>> d2f42b8ae31c98bade32b61344e89d301a7ac145
 --- !u!50 &1657118026
 Rigidbody2D:
   serializedVersion: 4
@@ -2186,24 +2181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6245ebef307e6477faa57bf04f3b9d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptEnabled: 1
   moveSpeed: 8
   jumpForce: 11
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheckPoint: {fileID: 1069149262}
-<<<<<<< HEAD
-  groundCheckRadius: 0.44
-  accelerationSpeed: 1
-  decelerationSpeed: 0.7
-  lowJumpGravityScale: 4
-  defaultGravityScale: 1.5
-  fallGravityScale: 4
-  airAccelerationSpeed: 0.5
-  airDecelerationSpeed: 0.1
-  shouldJump: 0
-=======
   groundCheckRadius: 0.47
   accelerationSpeed: 15
   decelerationSpeed: 10
@@ -3054,4 +3037,3 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
->>>>>>> d2f42b8ae31c98bade32b61344e89d301a7ac145
