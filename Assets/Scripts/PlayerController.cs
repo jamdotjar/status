@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private float moveDirection;
-    public 
+    public float fadeOutDuration = 2f;
     
     
     bool shouldJump;
@@ -44,6 +44,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             shouldJump = true;
+        }
+
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer.color.a == 0)
+        {
+            StartCoroutine(FadeOutPlayer(fadeOutDuration));
         }
     }
     void FixedUpdate()
@@ -110,5 +117,26 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
+    }
+
+    private IEnumerator FadeOutPlayer(float duration)
+    {
+        if (player.GetComponent<SpriteRenderer>().color.a == 0)
+    {
+        yield break;
+    }
+    
+    SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+    float elapsedTime = 0;
+
+    while (elapsedTime < duration)
+    {
+        elapsedTime += Time.deltaTime;
+        float alpha = 1 - (elapsedTime / duration);
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
+        yield return new WaitForSeconds(Time.deltaTime);
+    }
+
+    Destroy(gameObject);
     }
 }
