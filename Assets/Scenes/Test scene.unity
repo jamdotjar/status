@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 24063923}
   - component: {fileID: 24063922}
   - component: {fileID: 24063924}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 142655593}
   - component: {fileID: 142655592}
   - component: {fileID: 142655594}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,6 +593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d19c8f4cd44484a769656e62bd2258b0, type: 3}
+--- !u!1 &155686086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4365399179181381095, guid: d19c8f4cd44484a769656e62bd2258b0, type: 3}
+  m_PrefabInstance: {fileID: 155686085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &166597625
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +609,7 @@ GameObject:
   - component: {fileID: 166597627}
   - component: {fileID: 166597626}
   - component: {fileID: 166597628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +720,7 @@ GameObject:
   - component: {fileID: 371995241}
   - component: {fileID: 371995240}
   - component: {fileID: 371995242}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +831,7 @@ GameObject:
   - component: {fileID: 404839231}
   - component: {fileID: 404839230}
   - component: {fileID: 404839232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +942,7 @@ GameObject:
   - component: {fileID: 590847312}
   - component: {fileID: 590847311}
   - component: {fileID: 590847313}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,7 +1128,7 @@ GameObject:
   - component: {fileID: 988483381}
   - component: {fileID: 988483380}
   - component: {fileID: 988483382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1310,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1750822314
 PrefabInstance:
@@ -1508,11 +1513,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e30572bd45ad416790d2d13bac84e23, type: 3}
---- !u!1 &1828897368 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3870370580324077678, guid: d19c8f4cd44484a769656e62bd2258b0, type: 3}
-  m_PrefabInstance: {fileID: 155686085}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1831330450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,16 +1542,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4b753904d4a45ff8e8ea94c16022f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
-  particles: {fileID: 0}
+  otherPrefab: {fileID: 0}
   spherePrefab: {fileID: 129293381842839708, guid: 88aad5a51c2c7420ea17478dfdf1ad7a, type: 3}
-  player: {fileID: 1828897368}
+  player: {fileID: 155686086}
   activationKey: 103
-  xOffset: -0.5
-  yOffset: -0.5
+  newPrefabKey: 106
   gridWidth: 10
   gridHeight: 10
+  playerPrefab: {fileID: 4365399179181381095, guid: d19c8f4cd44484a769656e62bd2258b0, type: 3}
+  respawnKey: 104
+  outlierThreshold: 2
   offset: 0.09
+  particleSpawnOffset: {x: -0.45, y: -0.45, z: 0}
 --- !u!4 &1831330452
 Transform:
   m_ObjectHideFlags: 0

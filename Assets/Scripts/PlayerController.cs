@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator FadeOutPlayer(float duration)
     {
-        if (player.GetComponent<SpriteRenderer>().color.a == 0)
+        if (GetComponent<SpriteRenderer>().color.a == 0)
     {
         yield break;
     }
