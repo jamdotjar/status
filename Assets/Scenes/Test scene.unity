@@ -1719,12 +1719,12 @@ MonoBehaviour:
   player: {fileID: 155686086}
   activationKey: 103
   newPrefabKey: 106
-  gridWidth: 10
-  gridHeight: 10
+  gridWidth: 7
+  gridHeight: 7
   playerPrefab: {fileID: 4365399179181381095, guid: d19c8f4cd44484a769656e62bd2258b0, type: 3}
   respawnKey: 104
   outlierThreshold: 2
-  offset: 0.09
+  offset: 0.13
   minRespawnDistance: 1.5
   movementTime: 1.5
   particleSpawnOffset: {x: -0.45, y: -0.45, z: 0}

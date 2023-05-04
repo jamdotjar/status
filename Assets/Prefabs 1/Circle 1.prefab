@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6900526117119303005}
   - component: {fileID: 230612629454350600}
   - component: {fileID: 3487779033490697897}
-  - component: {fileID: 5565173082320050552}
   m_Layer: 10
   m_Name: Circle 1
   m_TagString: Untagged
@@ -97,6 +96,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -120,34 +138,13 @@ Rigidbody2D:
   m_AngularDrag: 0
   m_GravityScale: -2
   m_Material: {fileID: 6200000, guid: 52a3501d6ea8c4bb3bf7e3a3d87ed56a, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &5565173082320050552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129293381842839708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6245ebef307e6477faa57bf04f3b9d15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  jumpForce: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheckPoint: {fileID: 6442276486806150838}
-  groundCheckRadius: 0
-  accelerationSpeed: 1
-  decelerationSpeed: 0.4
-  lowJumpGravityScale: 4
-  defaultGravityScale: 2
-  fallGravityScale: 6
-  airAccelerationSpeed: 0.2
-  airDecelerationSpeed: 0.06
-  fadeOutDuration: 2
