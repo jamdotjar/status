@@ -20,12 +20,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fluid
-  m_Shader: {fileID: -6465566751694194690, guid: 4ddabb81cbc194a23a2494ec3355546b, type: 3}
+  m_Name: gas
+  m_Shader: {fileID: -6465566751694194690, guid: 2246a3dff3b8045a9b404f128f61c019, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -62,7 +63,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: 2b69fb0319da6413b8e7d7983a4a40f2, type: 2}
+        m_Texture: {fileID: 8400000, guid: fad7954c9beac464ca1c67c399f843fe, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
