@@ -43,6 +43,10 @@ private void OnDrawGizmos()
     {
         if (Input.GetKeyDown(activationKey))
         {
+        if (isDisabled)
+        {
+            return;
+        }
             initialPlayerPosition = player.transform.position;
             DisablePlayer();
             transform.position = initialPlayerPosition;
@@ -56,6 +60,10 @@ private void OnDrawGizmos()
 
         if (Input.GetKeyDown(newPrefabKey))
         {
+        if (isDisabled)
+        {
+            return;
+        }
             initialPlayerPosition = player.transform.position;
             DisablePlayer();
             transform.position = initialPlayerPosition;
@@ -70,10 +78,7 @@ private void OnDrawGizmos()
 
     private void GenerateSphereGrid(int width, int height)
     {
-         if (isDisabled)
-    {
-        return;
-    }
+   
 
         if (!spherePrefab)
         {
@@ -187,10 +192,7 @@ private void OnDrawGizmos()
     }
         private void SpawnOtherPrefabGrid(int width, int height)
     {
-         if (isDisabled)
-    {
-        return;
-    }
+
 
         if (!otherPrefab)
         {
@@ -225,6 +227,7 @@ private void OnDrawGizmos()
     }
   private void DisablePlayer()
     {
+
         
         SpriteRenderer playerRenderer = player.GetComponent<SpriteRenderer>();
         if (playerRenderer)
@@ -243,6 +246,7 @@ private void OnDrawGizmos()
         {
             playerRigidbody.isKinematic = true;
         }
+        isDisabled = true;
     }
     private void LateUpdate()
     {
@@ -255,6 +259,7 @@ private void OnDrawGizmos()
 
         private void EnablePlayer()
     {
+        
         SpriteRenderer playerRenderer = player.GetComponent<SpriteRenderer>();
         if (playerRenderer)
         {
@@ -272,6 +277,7 @@ private void OnDrawGizmos()
         {
             playerRigidbody.isKinematic = false;
         }
+        isDisabled = false;
     }
 
 }

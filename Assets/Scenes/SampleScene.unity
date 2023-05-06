@@ -299,6 +299,59 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &53410768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 53410769}
+  - component: {fileID: 53410770}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &53410769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53410768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 8.4, z: 0.034293395}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &53410770
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53410768}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 27.1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &72542541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,7 +1459,6 @@ GameObject:
   m_Component:
   - component: {fileID: 749619329}
   - component: {fileID: 749619331}
-  - component: {fileID: 749619330}
   m_Layer: 11
   m_Name: Gas Camera
   m_TagString: Untagged
@@ -1429,14 +1481,6 @@ Transform:
   m_Father: {fileID: 843478093}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &749619330
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749619328}
-  m_Enabled: 1
 --- !u!20 &749619331
 Camera:
   m_ObjectHideFlags: 0
@@ -1879,6 +1923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 843478093}
+  - component: {fileID: 843478094}
   m_Layer: 0
   m_Name: Camra rig
   m_TagString: Untagged
@@ -1906,6 +1951,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &843478094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843478092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a258f5fdf4e542ff8089483f2060153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1610059678}
+  minBounds: {x: -9, y: -4.5}
+  maxBounds: {x: 9, y: 19}
 --- !u!1 &949030110
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,6 +3635,11 @@ SpriteRenderer:
 --- !u!1 &1610059677 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4365399179181381095, guid: d19c8f4cd44484a769656e62bd2258b0, type: 3}
+  m_PrefabInstance: {fileID: 3870370578750983462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1610059678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4365399179181381089, guid: d19c8f4cd44484a769656e62bd2258b0, type: 3}
   m_PrefabInstance: {fileID: 3870370578750983462}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1683817531
