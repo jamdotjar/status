@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6900526117119303005}
   - component: {fileID: 230612629454350600}
   - component: {fileID: 3487779033490697897}
-  - component: {fileID: -945562563296397639}
   m_Layer: 11
   m_Name: Circle 1
   m_TagString: Untagged
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 129293381842839708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.2221, y: 5.067, z: 0}
-  m_LocalScale: {x: 0.24000001, y: 0.24000001, z: 0.96000004}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -121,7 +120,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.32
+  m_Radius: 0.2
 --- !u!50 &3487779033490697897
 Rigidbody2D:
   serializedVersion: 4
@@ -133,11 +132,11 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 0.0001
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: -2
+  m_LinearDrag: 0.01
+  m_AngularDrag: 0.001
+  m_GravityScale: -0.1
   m_Material: {fileID: 6200000, guid: 52a3501d6ea8c4bb3bf7e3a3d87ed56a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -149,16 +148,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-945562563296397639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129293381842839708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09d35c67fd184a8b8c7fdce63eabe59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invertedGravityIntensity: 9.81

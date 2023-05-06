@@ -10,13 +10,22 @@ public class CubeGen : MonoBehaviour
      public KeyCode newPrefabKey = KeyCode.J;
     public int gridWidth = 15;
     public int gridHeight = 15;
-        public GameObject playerPrefab;  // Add this new variable
+        public GameObject playerPrefab; 
     public KeyCode respawnKey = KeyCode.H;
     public float outlierThreshold = 2.0f;
     public float offset = 0.06f;
     public float minRespawnDistance = 0.5f; 
         public float movementTime = 2f;
-    public Vector3 particleSpawnOffset; // Add this new variable
+    public Vector3 particleSpawnOffset; 
+    public bool isDisabled = false;
+
+        private Vector3 initialPlayerPosition; // Add a new variable to store the player's initial position
+
+    private void Start()
+    {
+        initialPlayerPosition = player.transform.position;
+    }
+
 
 
 
@@ -32,29 +41,40 @@ private void OnDrawGizmos()
 }
     private void Update()
     {
-        if (Input.GetKeyDown(activationKey) && player != null)
+        if (Input.GetKeyDown(activationKey))
         {
-            Transform playerTransform = player.transform;
-            Destroy(player);
-            transform.position = playerTransform.position;
+            initialPlayerPosition = player.transform.position;
+            DisablePlayer();
+            transform.position = initialPlayerPosition;
             GenerateSphereGrid(gridWidth, gridHeight);
         }
-                if (Input.GetKeyDown(respawnKey))
+
+        if (Input.GetKeyDown(respawnKey))
         {
-            
             StartCoroutine(MoveSpheresAndRespawnPlayer());
         }
-         if (Input.GetKeyDown(newPrefabKey) && player != null)
+
+        if (Input.GetKeyDown(newPrefabKey))
         {
-                  Transform playerTransform = player.transform;
-            Destroy(player);
-            transform.position = playerTransform.position;   
+            initialPlayerPosition = player.transform.position;
+            DisablePlayer();
+            transform.position = initialPlayerPosition;
             SpawnOtherPrefabGrid(gridWidth, gridHeight);
         }
+        if (player != null)
+        {
+            player.transform.position = GetAveragePositionWithoutOutliers();
+        }
+    
     }
 
     private void GenerateSphereGrid(int width, int height)
     {
+         if (isDisabled)
+    {
+        return;
+    }
+
         if (!spherePrefab)
         {
             Debug.LogError("Sphere prefab has not been assigned!");
@@ -77,9 +97,9 @@ private void OnDrawGizmos()
         }
     }
     
-     private IEnumerator MoveSpheresAndRespawnPlayer()
+         private IEnumerator MoveSpheresAndRespawnPlayer()
     {
-        if (player == null)
+        if (player != null)
         {
             Vector3 averagePosition = GetAveragePositionWithoutOutliers();
 
@@ -108,7 +128,7 @@ private void OnDrawGizmos()
                 float t = elapsedTime / movementTime;
                 allSpheresInRange = true; // Reset the flag to true before checking distances
 
-                for (int i = 0; i < transform.childCount; i++)
+                 for (int i = 0; i < transform.childCount; i++)
                 {
                     Transform sphere = transform.GetChild(i);
                     sphere.position = Vector3.Lerp(initialPositions[i], averagePosition, t);
@@ -120,24 +140,20 @@ private void OnDrawGizmos()
                         allSpheresInRange = false;
                     }
                 }
+                  player.transform.position = averagePosition;
 
                 yield return null; // Wait for the next frame
             }
 
 
-            RespawnPlayerAtAveragePosition(); // Respawn the player after moving the spheres
-            DeleteSpherePrefabs(); // Delete the spheres after respawning player
+          
+            EnablePlayer(); // Enable the player's renderer, collider, and rigidbody components
+            DeleteSpherePrefabs();
+            
         }
     }
 
-    private void RespawnPlayerAtAveragePosition()
-    {
-        if (player == null)
-        {
-            Vector3 averagePosition = GetAveragePositionWithoutOutliers();
-            player = Instantiate(playerPrefab, averagePosition, Quaternion.identity);
-        }
-    }
+
 
     private Vector3 GetAveragePositionWithoutOutliers()
     {
@@ -171,6 +187,11 @@ private void OnDrawGizmos()
     }
         private void SpawnOtherPrefabGrid(int width, int height)
     {
+         if (isDisabled)
+    {
+        return;
+    }
+
         if (!otherPrefab)
         {
             Debug.LogError("Other prefab has not been assigned!");
@@ -202,4 +223,55 @@ private void OnDrawGizmos()
             Destroy(sphereChild.gameObject);
         }
     }
+  private void DisablePlayer()
+    {
+        
+        SpriteRenderer playerRenderer = player.GetComponent<SpriteRenderer>();
+        if (playerRenderer)
+        {
+            playerRenderer.enabled = false;
+        }
+      
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+        if (playerCollider)
+        {
+            playerCollider.enabled = false;
+        }
+        
+        Rigidbody2D playerRigidbody = player.GetComponent<Rigidbody2D>();
+        if (playerRigidbody)
+        {
+            playerRigidbody.isKinematic = true;
+        }
+    }
+    private void LateUpdate()
+    {
+        if(player != null)
+        {
+            // Update the player's position according to the average position (without outliers) of the prefabs
+            player.transform.position = GetAveragePositionWithoutOutliers();
+        }
+    }
+
+        private void EnablePlayer()
+    {
+        SpriteRenderer playerRenderer = player.GetComponent<SpriteRenderer>();
+        if (playerRenderer)
+        {
+            playerRenderer.enabled = true;
+        }
+      
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+        if (playerCollider)
+        {
+            playerCollider.enabled = true;
+        }
+        
+        Rigidbody2D playerRigidbody = player.GetComponent<Rigidbody2D>();
+        if (playerRigidbody)
+        {
+            playerRigidbody.isKinematic = false;
+        }
+    }
+
 }
