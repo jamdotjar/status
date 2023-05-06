@@ -43,10 +43,6 @@ private void OnDrawGizmos()
     {
         if (Input.GetKeyDown(activationKey))
         {
-        if (isDisabled)
-        {
-            return;
-        }
             initialPlayerPosition = player.transform.position;
             DisablePlayer();
             transform.position = initialPlayerPosition;
@@ -60,10 +56,6 @@ private void OnDrawGizmos()
 
         if (Input.GetKeyDown(newPrefabKey))
         {
-        if (isDisabled)
-        {
-            return;
-        }
             initialPlayerPosition = player.transform.position;
             DisablePlayer();
             transform.position = initialPlayerPosition;
@@ -71,14 +63,21 @@ private void OnDrawGizmos()
         }
         if (player != null)
         {
-            player.transform.position = GetAveragePositionWithoutOutliers();
+            if (isDisabled)
+            {
+                // Update the player's position according to the average position (without outliers) of the prefabs
+                player.transform.position = GetAveragePositionWithoutOutliers();
+            }
         }
     
     }
 
     private void GenerateSphereGrid(int width, int height)
     {
-   
+         if (isDisabled)
+    {
+        return;
+    }
 
         if (!spherePrefab)
         {
@@ -192,7 +191,10 @@ private void OnDrawGizmos()
     }
         private void SpawnOtherPrefabGrid(int width, int height)
     {
-
+         if (isDisabled)
+    {
+        return;
+    }
 
         if (!otherPrefab)
         {
@@ -227,7 +229,6 @@ private void OnDrawGizmos()
     }
   private void DisablePlayer()
     {
-
         
         SpriteRenderer playerRenderer = player.GetComponent<SpriteRenderer>();
         if (playerRenderer)
@@ -246,20 +247,22 @@ private void OnDrawGizmos()
         {
             playerRigidbody.isKinematic = true;
         }
-        isDisabled = true;
     }
     private void LateUpdate()
     {
         if(player != null)
         {
-            // Update the player's position according to the average position (without outliers) of the prefabs
-            player.transform.position = GetAveragePositionWithoutOutliers();
+            if (isDisabled)
+            {
+                // Update the player's position according to the average position (without outliers) of the prefabs
+                player.transform.position = GetAveragePositionWithoutOutliers();
+            }
+
         }
     }
 
         private void EnablePlayer()
     {
-        
         SpriteRenderer playerRenderer = player.GetComponent<SpriteRenderer>();
         if (playerRenderer)
         {
@@ -277,7 +280,6 @@ private void OnDrawGizmos()
         {
             playerRigidbody.isKinematic = false;
         }
-        isDisabled = false;
     }
 
 }
