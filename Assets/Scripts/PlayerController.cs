@@ -34,8 +34,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // log accelaration and deceleration speed
-        Debug.Log("acceleration speed: " + accelerationSpeed);
-        Debug.Log("deceleration speed: " + decelerationSpeed);
+
         CheckGrounded();
         moveDirection = Input.GetAxisRaw("Horizontal");
         Move();
