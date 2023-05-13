@@ -41,31 +41,34 @@ private void OnDrawGizmos()
 }
     private void Update()
     {
-        if (Input.GetKeyDown(activationKey))
+        if (Input.GetKeyDown(activationKey) && !isDisabled )
         {
             initialPlayerPosition = player.transform.position;
             DisablePlayer();
             transform.position = initialPlayerPosition;
             GenerateSphereGrid(gridWidth, gridHeight);
+            isDisabled = true;
         }
 
-        if (Input.GetKeyDown(respawnKey))
+        if (Input.GetKeyDown(respawnKey) && isDisabled )
         {
+            
             StartCoroutine(MoveSpheresAndRespawnPlayer());
+            
         }
 
-        if (Input.GetKeyDown(newPrefabKey))
+        if (Input.GetKeyDown(newPrefabKey) && !isDisabled)
         {
             initialPlayerPosition = player.transform.position;
             DisablePlayer();
             transform.position = initialPlayerPosition;
             SpawnOtherPrefabGrid(gridWidth, gridHeight);
+            isDisabled = true;
         }
         if (player != null)
         {
             if (isDisabled)
             {
-                // Update the player's position according to the average position (without outliers) of the prefabs
                 player.transform.position = GetAveragePositionWithoutOutliers();
             }
         }
@@ -148,10 +151,11 @@ private void OnDrawGizmos()
 
                 yield return null; // Wait for the next frame
             }
+            
 
-
-          
-            EnablePlayer(); // Enable the player's renderer, collider, and rigidbody components
+            isDisabled = false;
+            EnablePlayer(); 
+            // Enable the player's renderer, collider, and rigidbody components
             DeleteSpherePrefabs();
             
         }
