@@ -35,7 +35,7 @@ private void OnDrawGizmos()
     Vector3 adjustedTransformPosition = transform.position + particleSpawnOffset;
     Vector3 center = adjustedTransformPosition + new Vector3(gridWidth * offset, gridHeight * offset, 0f) * 0.5f;
     Vector3 cubeSize = new Vector3(gridWidth * offset, gridHeight * offset, 0f);
-
+    
     Gizmos.color = Color.yellow;
     Gizmos.DrawWireCube(center, cubeSize);
 }
