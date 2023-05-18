@@ -2,25 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-/* SUBSCRIBING TO MY YOUTUBE CHANNEL: 'VIN CODES' WILL HELP WITH MORE VIDEOS AND CODE SHARING IN THE FUTURE :) THANK YOU */
+
 
 public class MoveToNextLevel : MonoBehaviour
 {
     public int nextSceneLoad;
 
     // Start is called before the first frame update
+    
     void Start()
-    {
-        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+    { 
+        if(nextSceneLoad == -1)
+        {
+            nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        }
+       
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")
         {
-            if(SceneManager.GetActiveScene().buildIndex == 7) /* < Change this int value to whatever your
-                                                                   last level build index is on your
-                                                                   build settings */
+            if(SceneManager.GetActiveScene().buildIndex == 7)
+
             {
                 Debug.Log("You Completed ALL Levels");
                 
