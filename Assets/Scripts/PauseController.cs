@@ -31,6 +31,6 @@ public class PauseController : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // Replace with the name of your main menu scene
+        SceneManager.LoadScene("Main Menu"); // Replace with the name of your main menu scene
     }
 }

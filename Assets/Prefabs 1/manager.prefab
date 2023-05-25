@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6075970227182079533
+--- !u!1 &9107906321795499939
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6075970227182079531}
-  - component: {fileID: 6075970227182079532}
+  - component: {fileID: 1490953265726455423}
+  - component: {fileID: 1378962690958193634}
+  - component: {fileID: 644782006022787013}
+  - component: {fileID: 7881490278685551055}
   m_Layer: 0
   m_Name: manager
   m_TagString: Untagged
@@ -17,36 +19,70 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6075970227182079531
+--- !u!4 &1490953265726455423
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6075970227182079533}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: 3.67, z: -0.3707627}
+  m_GameObject: {fileID: 9107906321795499939}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.60000014, y: 3.67, z: -0.3707627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6075970227182079532
+--- !u!114 &1378962690958193634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6075970227182079533}
+  m_GameObject: {fileID: 9107906321795499939}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee4b753904d4a45ff8e8ea94c16022f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherPrefab: {fileID: 129293381842839708, guid: cd4184eadbfec4a8ca1da4215cbe46d1, type: 3}
   spherePrefab: {fileID: 129293381842839708, guid: 88aad5a51c2c7420ea17478dfdf1ad7a, type: 3}
   player: {fileID: 0}
   activationKey: 103
-  gridWidth: 10
-  gridHeight: 10
-  offset: 0.09
+  newPrefabKey: 106
+  gridWidth: 7
+  gridHeight: 7
+  playerPrefab: {fileID: 4365399179181381095, guid: d19c8f4cd44484a769656e62bd2258b0, type: 3}
+  respawnKey: 104
+  outlierThreshold: 2
+  offset: 0.13
+  minRespawnDistance: 2
+  movementTime: 1.5
+  particleSpawnOffset: {x: -0.45, y: -0.45, z: 0}
+  isDisabled: 0
+--- !u!114 &644782006022787013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107906321795499939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975d4e9d0b20e9540acddb60a9e22a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7881490278685551055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107906321795499939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea585e37c86d74715866a8cfd849db46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}

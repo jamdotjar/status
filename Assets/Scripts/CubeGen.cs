@@ -190,10 +190,11 @@ private void OnDrawGizmos()
             }
         }
 
-        Vector3 averagePosition = totalPosition / count;
+        Vector3 averagePosition = count > 0 ? totalPosition / count : initialPlayerPosition;
         return averagePosition;
     }
-        private void SpawnOtherPrefabGrid(int width, int height)
+
+    private void SpawnOtherPrefabGrid(int width, int height)
     {
          if (isDisabled)
     {
